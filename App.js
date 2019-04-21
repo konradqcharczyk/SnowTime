@@ -9,27 +9,42 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: null
+      mode: 'MAIN_MENU',
+      wtf: 1
     }
   }
 
-  // componentDidMount() {
-  //   fetch('https://www.googleapis.com/youtube/v3/search/?key=AIzaSyBnyzw_EQ2knnKw48lg0WmsEKGoYWi88rw&part=snippet&order=relevance&maxResults=1&q=ollie+180+tutorial+snowboard')
-  //   .then(res => res.json())
-  //   .then(res => {
-  //     const videoId = res.items[0].id.videoId;
-  //     this.setState({
-  //       data: videoId
-  //     })
-  //   })
-  // }
+  setMode = async (next_mode) => {
+    this.setState({
+      mode: next_mode,
+    });
+
+    this.setState({
+      wtf: 1,
+    });
+  }
 
   render() {
-    // text = this.state.data;
-    // console.log({text});
+
+    switch(this.state.mode) {
+      case 'MAIN_MENU':
+        toReturn =  <View style={styles.container}>
+                      <Button style={styles.Button} title="Start riding" onPress={this.setMode.bind(this, "LOCATION")}></Button>
+                      <Button style={styles.Button} title="Training" onPress={this.setMode.bind(this, "YOU_TUBE")}></Button>
+                    </View>;
+      break;
+      case 'YOU_TUBE':
+        toReturn = <Text>YouTuby</Text>
+      break;
+      case 'LOCATION':
+        toReturn = <Text>Location</Text>
+      break;
+    }
+
+  
     return (
       <View style={styles.container}>
-      <TrickListView/>
+        <TrickListView/>
       </View>
     );
   }
