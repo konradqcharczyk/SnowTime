@@ -8,6 +8,7 @@ export default class TrickListView extends Component {
   state = {
     videoUri: null,
     isVideo: 0,
+    wtf: 1,
   };
 
   playVideo = async (trickName) => {
@@ -19,6 +20,10 @@ export default class TrickListView extends Component {
 
     this.setState({
       videoUri: url,
+    });
+
+    this.setState({
+      wtf: 1,
     });
   }
  

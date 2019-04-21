@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import TrickListView from './TrickListView'
+import LocationFetcher from './LocationFetcher';
 
 
 
@@ -34,28 +35,37 @@ export default class App extends React.Component {
                     </View>;
       break;
       case 'YOU_TUBE':
-        toReturn = <Text>YouTuby</Text>
+        toReturn = <View style={styles.container}>
+                      <TrickListView/>
+                   </View>;
       break;
       case 'LOCATION':
-        toReturn = <Text>Location</Text>
+      toReturn =  <View style={styles.container}>
+                      <LocationFetcher/>
+                  </View>;
       break;
     }
 
   
     return (
-      <View style={styles.container}>
-        <TrickListView/>
-      </View>
+      toReturn
     );
   }
 
 }
 
+//probably can be passed as properties to ytHandler and locFetch
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    paddingTop: 250,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  paragraph: {
+    margin: 24,
+    fontSize: 18,
+    textAlign: 'center',
+  },
+  Button: {
+    padding: 5,
   },
 });
