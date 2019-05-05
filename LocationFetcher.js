@@ -10,7 +10,9 @@ export default class LocationFetcher extends Component {
     locationPrev: null,
     location: null,
     errorMessage: null,
-    distance: 0
+    distance: 0,
+    currSpeed: 0,
+    maxSpeed: 0
   };
 
 
@@ -82,14 +84,22 @@ export default class LocationFetcher extends Component {
       speed = (delta / (this.timeInterval * this.wasSkippedCnt)) * 3,6; //in kmph
       console.log(delta);
       console.log(speed);
-      if(speed > this.minKmph) {
+      this.setState(
+        {currSpeed: speed}
+      );
+      if(speed > this.minKmph) { // TODO add check on accuracy?
         this.setState(
           {location: location}
         );
+        
+        if (this.state.maxSpeed < speed) {
+          this.setState(
+            {maxSpeed: speed}
+          );
+        }
 
         this.setState((state) => {
-          return {distance: state.distance + delta,
-                  currSpeed: speed}
+          return {distance: state.distance + delta}
         });
         this.wasSkippedCnt = 1;
         }
@@ -138,6 +148,8 @@ export default class LocationFetcher extends Component {
         <Text style={styles.paragraph}>Altitude: {JSON.stringify(coords.altitude)}</Text>
         <Text style={styles.paragraph}>Accuracy: {JSON.stringify(coords.accuracy)}</Text>
         <Text style={styles.paragraph}>Distance: {this.state.distance}</Text>
+        <Text style={styles.paragraph}>Current speed: {this.state.currSpeed}</Text>
+        <Text style={styles.paragraph}>Max speed: {this.state.maxSpeed}</Text>
       </View>
     );
   }

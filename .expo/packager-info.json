@@ -1,7 +1,9 @@
 {
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://hd-8pt.anonymous.snowtime.exp.direct",
+  "packagerNgrokUrl": "https://packager.hd-8pt.anonymous.snowtime.exp.direct",
+  "ngrokPid": 7372,
+  "packagerPort": 19001,
+  "packagerPid": 12048,
+  "devToolsPort": 19002
 }

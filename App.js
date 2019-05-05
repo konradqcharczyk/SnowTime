@@ -3,20 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
 import TrickListView from './TrickListView'
 import LocationFetcher from './LocationFetcher';
-import YouTubePlayer from './YouTubePlayer';
 
 import { WebView } from 'react-native-webview';
-import { Video } from 'expo';
-import VideoPlayer from '@expo/videoplayer';
-
-import KalmanFilter from 'kalmanjs';
 
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: 'LOCATION',
+      mode: 'YOU_TUBE',
     }
   }
 

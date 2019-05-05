@@ -1,23 +1,22 @@
 import React, { Component } from 'react';
-import { Platform, Text, ScrollView, StyleSheet } from 'react-native';
-import { Constants, Location, Permissions } from 'expo';
+import { Text, ScrollView, StyleSheet } from 'react-native';
+import { Constants} from 'expo';
 import { Button } from 'react-native-elements';
 import { YouTubeApiHandler } from './YouTubeApiHandler.js';
 import { config } from './config.js';
 
 export default class TrickListView extends Component {
   state = {
-    videoUri: null,
+    videoUrl: null,
     isVideo: 0,
     wtf: 1,
   };
 
   playVideo = async (trickName) => {
     url = await new YouTubeApiHandler().getVideoUrl(trickName);
-    console.log(url);
     this.setState({
       isVideo: 1,
-      videoUri: url,
+      videoUrl: url,
     });
 
   }
@@ -37,10 +36,11 @@ export default class TrickListView extends Component {
     </ScrollView>;
     }
     else {
+
       url = this.state.videoUrl;
-      toReturn =  <ScrollView style={styles.container}  showsVerticalScrollIndicator={false}>
-                    <Text>Play video: {url}</Text>
-                  </ScrollView>;
+      console.log(url);
+      toReturn = <Text>Play video: {url}</Text>
+
     };
     return (toReturn);
     }
