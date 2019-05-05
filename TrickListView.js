@@ -3,6 +3,7 @@ import { Platform, Text, ScrollView, StyleSheet } from 'react-native';
 import { Constants, Location, Permissions } from 'expo';
 import { Button } from 'react-native-elements';
 import { YouTubeApiHandler } from './YouTubeApiHandler.js';
+import { config } from './config.js';
 
 export default class TrickListView extends Component {
   state = {
@@ -16,19 +17,13 @@ export default class TrickListView extends Component {
     console.log(url);
     this.setState({
       isVideo: 1,
-    });
-
-    this.setState({
       videoUri: url,
     });
 
-    this.setState({
-      wtf: 1,
-    });
   }
  
   render() {
-    tutorials = ['Tail Press', 'Nose Press', 'Ollie', 'Ollie 180']
+    tutorials = config.TRICKS;
 
     if (this.state.isVideo === 0) {
       toReturn = <ScrollView style={styles.container}  showsVerticalScrollIndicator={false}>

@@ -1,9 +1,7 @@
 {
-  "expoServerPort": 19000,
-  "devToolsPort": 19002,
-  "packagerPort": 19001,
-  "packagerPid": 12280,
-  "expoServerNgrokUrl": "https://r9-dei.anonymous.snowtime.exp.direct",
-  "packagerNgrokUrl": "https://packager.r9-dei.anonymous.snowtime.exp.direct",
-  "ngrokPid": 15460
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
