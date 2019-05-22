@@ -6,11 +6,11 @@ import { config } from './config.js';
 
 export class YouTubeApiHandler{
 
-    getVideoUrl= async (trickName) => {
+    getVideoUrl= async (trickName, type) => {
 
         videoId = null;
-        console.log("https://www.googleapis.com/youtube/v3/search/?key=" + config.API_KEY + "&part=snippet&order=relevance&maxResults=1&q=tutorial+snowboard"+ trickName)
-        await fetch("https://www.googleapis.com/youtube/v3/search/?key=" + config.API_KEY + "&part=snippet&order=relevance&maxResults=1&q=tutorial+snowboard"+ trickName)
+        console.log("https://www.googleapis.com/youtube/v3/search/?key=" + config.API_KEY + "&part=snippet&order=relevance&maxResults=1&q=tutorial+" + type + "+" + trickName)
+        await fetch("https://www.googleapis.com/youtube/v3/search/?key=" + config.API_KEY + "&part=snippet&order=relevance&maxResults=1&q=tutorial+" + type + "+" + trickName)
         .then(res => res.json())
         .then(res => {
             videoId = res.items[0].id.videoId;

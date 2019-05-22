@@ -1,21 +1,32 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-elements';
-import TrickListView from './TrickListView'
-import LocationFetcher from './LocationFetcher';
+import TrickListScreen from './TrickListScreen'
+import LocationScreen from './LocationScreen';
+import HomeScreen from './HomeScreen'
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+  createAppContainer,
+} from 'react-navigation';
 
-import { WebView } from 'react-native-webview';
-import { YouTubeApiHandler } from './YouTubeApiHandler';
-import YouTubePlayer from './YouTubePlayer';
 
+const tabs = {
+  MAIN_MENU: 'MAIN_MENU',
+  TRICK_LIST: 'TRICK_LIST',
+  LOCATION: 'LOCATION',
+  TEST: 'TEST'
+}
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: 'MAIN_MENU',
+      mode: tabs.TEST,
     }
   }
+
+
 
   setMode = async (next_mode) => {
     this.setState({
@@ -23,35 +34,40 @@ export default class App extends React.Component {
     });
   }
 
+  setMainMenu = () => {
+    console.log('wrocilo');
+    this.setState({
+      mode: tabs.MAIN_MENU,
+    })
+  }
+
   render() {
 
     switch(this.state.mode) {
-      case 'MAIN_MENU':
+      case tabs.MAIN_MENU:
         toReturn =  <View style={styles.container}>
-                      <Button style={styles.Button} title="Start riding" onPress={this.setMode.bind(this, "LOCATION")}></Button>
-                      <Button style={styles.Button} title="Training" onPress={this.setMode.bind(this, "YOU_TUBE")}></Button>
+                      <Button style={styles.Button} title="Start riding" onPress={this.setMode.bind(this, tabs.LOCATION)}></Button>
+                      <Button style={styles.Button} title="Training" onPress={this.setMode.bind(this, tabs.TRICK_LIST)}></Button>
+                      {/* <LocationFetcher setMainMenu={this.setMainMenu} mode='MAIN_MENU'/> */}
                     </View>;
       break;
-      case 'YOU_TUBE':
+      case tabs.TRICK_LIST:
         toReturn = <View style={styles.container}>
-                      <TrickListView/>
+                      <TrickListScreen setMainMenu={this.setMainMenu}/>
                    </View>;
       break;
-      case 'LOCATION':
+      case tabs.LOCATION:
       toReturn =  <View style={styles.container}>
-                      <LocationFetcher/>
+                      <LocationScreen setMainMenu={this.setMainMenu} />
                   </View>;
       break;
 
-      case 'YOUTUBE_TEST':
-      toReturn =  <View style={styles.container}>
-                    <YouTubePlayer></YouTubePlayer>
-                  </View>;
+      case tabs.TEST:
+      toReturn =  <HomeScreen></HomeScreen>
       break;
 
     }
 
-  
     return (
       toReturn
     );
@@ -75,3 +91,4 @@ const styles = StyleSheet.create({
     padding: 5,
   },
 });
+
